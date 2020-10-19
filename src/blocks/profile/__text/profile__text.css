@@ -1,0 +1,7 @@
+@media screen and (min-width: 1024px) {
+  .profile__text {
+    margin-top: 21.75px;
+    margin-left: 20px;
+    /*  58 -36.25 */
+  }
+}

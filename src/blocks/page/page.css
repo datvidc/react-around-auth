@@ -1,0 +1,8 @@
+.page {
+  background-color: #000000;
+  width: 100%;
+  min-height: 100%;
+  max-width: 882px;
+  margin: 0 auto;
+  position: relative;
+}

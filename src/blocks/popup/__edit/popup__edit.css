@@ -1,0 +1,8 @@
+@import url(./_invalid/popup__edit_invalid.css);
+@import url(./_error/popup__edit_error.css);
+.popup__edit {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 0;
+}

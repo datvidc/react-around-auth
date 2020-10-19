@@ -1,0 +1,15 @@
+.popup__imgtext {
+  margin-bottom: 200px;
+  color: white;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: start;
+  margin-top: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 250px;
+  text-overflow: ellipsis;
+}

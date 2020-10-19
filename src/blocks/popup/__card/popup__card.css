@@ -1,0 +1,6 @@
+.popup__card {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}

@@ -1,0 +1,9 @@
+  .elements__heart_likes {
+    grid-area: likes;
+    margin: 3px 0 0 auto;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    width: 21px;
+  }

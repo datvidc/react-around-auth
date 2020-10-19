@@ -1,0 +1,17 @@
+.profile__title {
+  margin: 0;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+}
+
+@media screen and (min-width: 620px) {
+  .profile__title {
+    width: 50%;
+    grid-area: subtitle;
+    text-align: start;
+  }
+}

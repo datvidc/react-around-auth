@@ -1,0 +1,42 @@
+@import url(./__avatar/profile__avatar.css);
+@import url(./__avatar-wrap/profile__avatar-wrap.css);
+@import url(./__edit/profile__edit.css);
+@import url(./__name/profile__name.css);
+@import url(./__title/profile__title.css);
+@import url(./__add/profile__add.css);
+@import url(./__text/profile__text.css);
+@import url(./__namebox/profile__namebox.css);
+.profile {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  color: #FFFFFF;
+  margin: 38.25px auto 36px auto;
+}
+
+@media screen and (min-width: 620px) {
+  .profile {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    /* grid-template-rows: 50px; */
+    grid-template-areas: "avatar title title" "avatar subtitle subtitle" ". add .";
+    max-width: 620px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .profile {
+    display: flex;
+    flex-direction: row;
+    margin: 36px 0 47.25px 0;
+    max-width: 882px;
+    justify-content: start;
+    /* display: grid;
+        grid-template-columns: 1fr 3fr 2fr;
+        grid-template-rows: auto;
+        grid-template-areas: "avatar text add" "avatar text add" ". . .";
+        max-width: 882px; */
+  }
+}

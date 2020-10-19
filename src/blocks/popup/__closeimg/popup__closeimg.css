@@ -1,0 +1,10 @@
+.popup__closeimg {
+  top: 0px;
+  left: 215px;
+}
+
+@media screen and (min-width: 620px) {
+  .popup__closeimg {
+    align-self: flex-end;
+  }
+}

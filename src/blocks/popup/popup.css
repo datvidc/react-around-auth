@@ -1,0 +1,37 @@
+@import url(./__container/popup__container.css);
+@import url(./__edit-form/popup__edit-form.css);
+@import url(./__edit/popup__edit.css);
+@import url(./__close/popup__close.css);
+@import url(./__heading/popup__heading.css);
+@import url(./__save/popup__save.css);
+@import url(./_visible/popup_invisible.css);
+@import url(./__addcard/popup__addcard.css);
+@import url(./__img/popup__img.css);
+@import url(./__imgtext/popup__imgtext.css);
+@import url(./__image/popup__image.css);
+@import url(./__closeimg/popup__closeimg.css);
+@import url(./__card/popup__card.css);
+@import url(./_image/popup_image.css);
+@import url(./__label-group/popup__label-group.css);
+.popup {
+  width: 100%;
+  height: 100%;
+  max-width: 882px;
+  background-color: rgba(0, 0, 0, .6);
+  position: absolute;
+  z-index: 1000;
+  top: 0px;
+  left: 0px;
+  opacity: 0;
+  transition: all 1s ease-in-out;
+  visibility: hidden;
+}
+
+@media screen and (min-width: 620px) {
+  .popup {
+    height: 100%;
+    width: 100%;
+    max-width: 882px;
+    position: absolute;
+  }
+}

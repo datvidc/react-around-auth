@@ -1,0 +1,43 @@
+.profile__add {
+  background-image: url(../../../images/plus.svg);
+  background-size: 22px 22px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: black;
+  padding: 17px 134px 17px 132px;
+  border: 2px solid #FFFFFF;
+  box-sizing: border-box;
+  max-width: 400px;
+  border-radius: 2px;
+  margin: 36px 19px;
+  align-self: center;
+  height: 22px;
+}
+
+.profile__add:hover {
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  box-sizing: border-box;
+  border-radius: 2px;
+  cursor: pointer;
+  opacity: 0.6;
+  /* or filter */
+}
+
+@media screen and (min-width: 620px) {
+  .profile__add {
+    grid-area: add;
+    justify-self: start;
+    text-align: left;
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .profile__add {
+    justify-self: end;
+    padding: 22px 64px;
+    text-align: end;
+    margin-right: 0;
+    margin-left: auto;
+  }
+}

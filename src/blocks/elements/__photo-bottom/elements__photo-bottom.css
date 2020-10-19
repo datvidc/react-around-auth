@@ -1,0 +1,5 @@
+.elements__photo-bottom {
+  padding: 20px 20px 25px;
+  display: grid;
+  grid-template-areas: "name heart" "name likes";
+}

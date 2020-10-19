@@ -1,0 +1,14 @@
+.popup .popup__container_addcard {
+  margin-top: 155px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media screen and (min-width: 620px) {
+  .popup .popup__container_addcard {
+    position: absolute;
+    top: 10px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}

@@ -1,0 +1,18 @@
+.profile__avatar-wrap {
+  /* div necesary as picture is not rectangle */
+  height: 127.5px;
+  overflow: hidden;
+  text-align: center;
+  margin: auto;
+}
+
+@media screen and (min-width: 620px) {
+  .profile__avatar-wrap {
+    margin: 0;
+    text-align: left;
+    grid-area: avatar;
+    width: 168.75px;
+    height: 127.5px;
+    left: 176.5px;
+  }
+}

@@ -1,0 +1,26 @@
+.popup__close {
+  top: -50px;
+  left: 220px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
+  background-image: url(../../../images/plus.svg);
+  transform: rotate(45deg);
+}
+
+.popup__close:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 620px) {
+  .popup__close {
+    position: inherit;
+    top: -40px;
+    left: 400px;
+  }
+}

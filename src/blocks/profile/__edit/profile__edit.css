@@ -1,0 +1,17 @@
+.profile__edit {
+  border: 1px solid #FFFFFF;
+  padding: 5.25px;
+  background: center / 10px 10px no-repeat url(../../../images/Edit.svg);
+  height: 18px;
+  width: 18px;
+  box-sizing: border-box;
+  align-self: center;
+  margin-left: 17.25px;
+}
+
+.profile__edit:hover {
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-sizing: border-box;
+  opacity: 0.6;
+  cursor: pointer;
+}

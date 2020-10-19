@@ -1,0 +1,21 @@
+@import url(./_clicked/elements__heart_clicked.css);
+@import url(./_likes/elements__heart_likes.css);
+.elements__heart {
+  background-image: url(../../../images/heart.svg);
+  margin: auto 0 auto auto;
+  background-color: #fff;
+  border: none;
+  background-size: cover;
+  background-repeat: no-repeat;
+  grid-area: heart;
+  padding: 0;
+  height: 18.13px;
+  width: 20.76px;
+  color: black;
+  align-self: center;
+}
+
+.elements__heart:hover {
+  opacity: 0.3;
+  cursor: pointer;
+}

@@ -1,0 +1,13 @@
+.profile__namebox {
+  grid-area: title;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  width: 100%;
+}
+
+@media screen and (min-width: 620px) {
+  .profile__namebox {
+    justify-content: start;
+  }
+}

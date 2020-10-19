@@ -1,0 +1,11 @@
+.profile__avatar-overlay {
+  position: relative;
+}
+
+.profile__avatar-overlay:hover {
+  cursor: pointer;
+}
+
+.profile__avatar-overlay:hover .profile__avatar-hover {
+  opacity: 1;
+}
