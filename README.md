@@ -1,5 +1,4 @@
 
-
 ## Project 14
 Project 15 in the web developer bootcamp @Yandex {Practicum}
 
@@ -7,7 +6,6 @@ This is the 3rd project in section 7: Back-end Basics for Web Developers
 The focus is on user auth^2 (authorization and Authentification)
 
 Project now must include a revised front end, with user registration, login and protected routes. 
-
 
 1. Basics of HTML, CSS:
 2. Advanced HTML & CSS
@@ -17,11 +15,6 @@ Project now must include a revised front end, with user registration, login and 
 6. Creating an Interface with React
 7. Back-end Basics for Web Developers
 8. Final Project 
-
-
-
-
-
 
 
 This project introduces database and database concepts. 
