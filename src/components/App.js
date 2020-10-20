@@ -1,4 +1,5 @@
 import React from 'react';
+import {Route, Switch, useHistory, withRouter} from 'react-router-dom';
 import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
@@ -129,6 +130,14 @@ class App extends React.Component {
 
       <div >
         <CurrentUserContext.Provider value={this.state.currentUser}>
+          <Switch >
+            <Route path="/signin"> 
+            
+            </Route>
+            <Route path="/signup">
+            </Route>
+          </Switch> 
+
           <Header />
           <Main onCardClick={this.handleCardClick} onAvatarClick={this.handleEditAvatarClick} onEditProfile={this.handleEditProfileClick} onAddPlaceClick={this.handleAddPlaceClick} cards={this.state.cards} onCardLike={this.handleCardLike} onCardDelete={this.handleDeleteCard}   />
           <Footer />
