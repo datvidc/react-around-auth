@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, useHistory, withRouter} from 'react-router-dom';
+import { Switch, Route, useHistory, withRouter } from 'react-router-dom';
 import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
@@ -105,45 +105,44 @@ class App extends React.Component {
     api.likeButton(card, isLiked).then((res) => {
       const newCards = this.state.cards.map((card) =>
         res._id === card._id ? res : card);
-  	this.setState({cards : newCards});
+      this.setState({ cards: newCards });
     })
   }
 
-	handleDeleteCard = (card) => {
+  handleDeleteCard = (card) => {
     //Delete button should not be there if this is not true, but...anyway checking if card is owned by current user
     const cardOwner = card.owner._id === this.state.currentUser._id;
 
     if (cardOwner) {
       api.deleteCard(card._id).then(() => {
         const newCards = this.state.cards.filter(c => c._id !== card._id);
-        this.setState({cards : newCards});
+        this.setState({ cards: newCards });
       })
     }
   }
 
-	handleAddPlaceSubmit = (name, link) => {
-		api.addCard(name, link).then((res) => { 
-			this.setState({ cards: [...this.state.cards, res] });
-		})
-	}
+  handleAddPlaceSubmit = (name, link) => {
+    api.addCard(name, link).then((res) => {
+      this.setState({ cards: [...this.state.cards, res] });
+    })
+  }
 
   render() {
     return (
       <div>
         <CurrentUserContext.Provider value={this.state.currentUser}>
           <Switch >
-            <Route path="/signin"> 
-            
+            <Route path="/signin">
+
             </Route>
             <Route path="/signup">
             </Route>
-            <ProtectedRoute path="/ducks" loggedIn={this.state.loggedIn} component={Ducks} />
-        <ProtectedRoute path="/my-profile" loggedIn={this.state.loggedIn} component={MyProfile} />
-
-            </Switch> 
+            <ProtectedRoute path="/" loggedIn={this.state.loggedIn} component={Ducks} />
+            
+          </Switch>
 
           <Header />
-          <Main onCardClick={this.handleCardClick} onAvatarClick={this.handleEditAvatarClick} onEditProfile={this.handleEditProfileClick} onAddPlaceClick={this.handleAddPlaceClick} cards={this.state.cards} onCardLike={this.handleCardLike} onCardDelete={this.handleDeleteCard}   />
+          <Main onCardClick={this.handleCardClick} onAvatarClick={this.handleEditAvatarClick} onEditProfile={this.handleEditProfileClick} onAddPlaceClick={this.handleAddPlaceClick} cards={this.state.cards} onCardLike={this.handleCardLike} onCardDelete={this.handleDeleteCard} />
           <Footer />
 
           <EditAvatarPopup isOpen={this.state.isEditPicOpen} onClose={this.closeAllPopups} onUpdateAvatar={this.handleEditAvatar} />
@@ -153,9 +152,9 @@ class App extends React.Component {
 
           <EditProfilePopup isOpen={this.state.isChangePopOpen} onClose={this.closeAllPopups} onUpdateUser={this.handleEditUser} />
 
-					<AddPlacePopup isAddPopOpen={this.state.isAddPopOpen} closeAllPopups={this.closeAllPopups} onAddPlace={this.handleAddPlaceSubmit} />
-          
-            
+          <AddPlacePopup isAddPopOpen={this.state.isAddPopOpen} closeAllPopups={this.closeAllPopups} onAddPlace={this.handleAddPlaceSubmit} />
+
+
 
           <ImagePopup card={this.state.selectedCard} onClose={this.closeAllPopups}>
           </ImagePopup>
