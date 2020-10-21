@@ -128,7 +128,6 @@ class App extends React.Component {
 
   render() {
     return (
-
       <div >
         <CurrentUserContext.Provider value={this.state.currentUser}>
           <Switch >

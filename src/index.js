@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom'
 import './index.css';
 import App from './components/App.js';
 import * as serviceWorker from './serviceWorker';
@@ -8,7 +8,7 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter basename='/react-around-auth'>
-    <App/>
+    <App />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
