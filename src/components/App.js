@@ -128,7 +128,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div >
+      <div>
         <CurrentUserContext.Provider value={this.state.currentUser}>
           <Switch >
             <Route path="/signin"> 
