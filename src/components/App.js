@@ -137,8 +137,10 @@ class App extends React.Component {
             </Route>
             <Route path="/signup">
             </Route>
-            <ProtectedRoute path="/" />
-          </Switch> 
+            <ProtectedRoute path="/ducks" loggedIn={this.state.loggedIn} component={Ducks} />
+        <ProtectedRoute path="/my-profile" loggedIn={this.state.loggedIn} component={MyProfile} />
+
+            </Switch> 
 
           <Header />
           <Main onCardClick={this.handleCardClick} onAvatarClick={this.handleEditAvatarClick} onEditProfile={this.handleEditProfileClick} onAddPlaceClick={this.handleAddPlaceClick} cards={this.state.cards} onCardLike={this.handleCardLike} onCardDelete={this.handleDeleteCard}   />
