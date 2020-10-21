@@ -10,6 +10,7 @@ import api from '../utils/api';
 import EditProfilePopup from './EditProfilePopup.js';
 import EditAvatarPopup from './EditAvatarPopup.js';
 import AddPlacePopup from './AddPlacePopup.js';
+import ProtectedRoute from './ProtectedRoute.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -136,6 +137,7 @@ class App extends React.Component {
             </Route>
             <Route path="/signup">
             </Route>
+            <ProtectedRoute path="/" />
           </Switch> 
 
           <Header />
