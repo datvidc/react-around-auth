@@ -8,9 +8,9 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-    <App />
-    </BrowserRouter>
+      <BrowserRouter basename='/react-around-auth'>
+        <App/>
+      </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 )
