@@ -25,6 +25,7 @@ class App extends React.Component {
       currentUser: {}, //name: "Lacking Gravitas", about: "SPaceSHip", avatar: defaultAvatarPicture
       cards: [],
       loggedIn: false
+      
     };
   }
 
@@ -134,7 +135,9 @@ class App extends React.Component {
         <CurrentUserContext.Provider value={this.state.currentUser}>
           <Switch >
             <Route path="/signin">
-              <Header />
+            <Header />
+            <Main onCardClick={this.handleCardClick} onAvatarClick={this.handleEditAvatarClick} onEditProfile={this.handleEditProfileClick} onAddPlaceClick={this.handleAddPlaceClick} cards={this.state.cards} onCardLike={this.handleCardLike} onCardDelete={this.handleDeleteCard} />
+              
             </Route>
             <Route path="/signup">
               <Header />
