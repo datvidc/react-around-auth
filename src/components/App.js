@@ -132,19 +132,20 @@ class App extends React.Component {
     return (
       <div>
         <CurrentUserContext.Provider value={this.state.currentUser}>
-
-          
           <Switch >
             <Route path="/signin">
-
+            <Header />
             </Route>
             <Route path="/signup">
+            <Header />
             </Route>
             <ProtectedRoute path="/" loggedIn={this.state.loggedIn} component={Main} />
             
+    
+            
           </Switch>
 
-          <Header />
+          
           <Main onCardClick={this.handleCardClick} onAvatarClick={this.handleEditAvatarClick} onEditProfile={this.handleEditProfileClick} onAddPlaceClick={this.handleAddPlaceClick} cards={this.state.cards} onCardLike={this.handleCardLike} onCardDelete={this.handleDeleteCard} />
           <Footer />
 
