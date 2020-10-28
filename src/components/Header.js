@@ -5,7 +5,7 @@ function Header() {
   return (
   <header className="header">
     <img className="header__logo" src={Vector} alt="Around the US" />
-   <div> 
+   <div className="header__loginMenu">> 
     <p className='header__email'> </p>
     <button className="header__signBtn"></button>
   </div> 
