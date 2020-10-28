@@ -28,8 +28,9 @@ class App extends React.Component {
     };
   }
 
-
-
+  handleLogin = (value) => { 
+    this.setState({ loggedIn: value });
+  }
 
   handleCardClick = (value) => {
     this.setState({ selectedCard: value });
