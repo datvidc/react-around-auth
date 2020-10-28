@@ -1,5 +1,5 @@
 import React from 'react';
 
 ##TODO
-Make a login Component. 
+Make a infoTooltip Component. 
 
