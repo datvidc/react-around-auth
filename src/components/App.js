@@ -132,13 +132,15 @@ class App extends React.Component {
     return (
       <div>
         <CurrentUserContext.Provider value={this.state.currentUser}>
+
+          
           <Switch >
             <Route path="/signin">
 
             </Route>
             <Route path="/signup">
             </Route>
-            <ProtectedRoute path="/" loggedIn={this.state.loggedIn} component={Ducks} />
+            <ProtectedRoute path="/" loggedIn={this.state.loggedIn} component={Main} />
             
           </Switch>
 
