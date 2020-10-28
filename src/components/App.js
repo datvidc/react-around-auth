@@ -28,7 +28,7 @@ class App extends React.Component {
     };
   }
 
-  handleLogin = (value) => { 
+  handleLogin = (value) => {
     this.setState({ loggedIn: value });
   }
 
@@ -134,19 +134,16 @@ class App extends React.Component {
         <CurrentUserContext.Provider value={this.state.currentUser}>
           <Switch >
             <Route path="/signin">
-            <Header />
+              <Header />
             </Route>
             <Route path="/signup">
-            <Header />
+              <Header />
             </Route>
-            <ProtectedRoute path="/" loggedIn={this.state.loggedIn} component={Main} />
-            
-    
-            
+            <ProtectedRoute path="/" loggedIn={this.state.loggedIn} component={Main} >
+              <Header />
+              <Main onCardClick={this.handleCardClick} onAvatarClick={this.handleEditAvatarClick} onEditProfile={this.handleEditProfileClick} onAddPlaceClick={this.handleAddPlaceClick} cards={this.state.cards} onCardLike={this.handleCardLike} onCardDelete={this.handleDeleteCard} />
+            </ProtectedRoute>
           </Switch>
-
-          
-          <Main onCardClick={this.handleCardClick} onAvatarClick={this.handleEditAvatarClick} onEditProfile={this.handleEditProfileClick} onAddPlaceClick={this.handleAddPlaceClick} cards={this.state.cards} onCardLike={this.handleCardLike} onCardDelete={this.handleDeleteCard} />
           <Footer />
 
           <EditAvatarPopup isOpen={this.state.isEditPicOpen} onClose={this.closeAllPopups} onUpdateAvatar={this.handleEditAvatar} />
