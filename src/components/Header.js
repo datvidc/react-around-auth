@@ -6,10 +6,11 @@ function Header(props) {
   <header className="header">
     <img className="header__logo" src={Vector} alt="Around the US" />
    <div className="header__loginMenu">
-    {if (props.userEmail) { 
-    <p className='header__email'> </p>
-    }}
-    <button className="header__signBtn"></button>
+    
+    { props.userEmail &&  
+    <p className='header__email'></p>
+    }
+    <button type="button" className="header__signBtn"> Login </button>
   </div> 
   </header>
   );
