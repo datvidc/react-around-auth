@@ -1,9 +1,16 @@
-
 .login__form {
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto 15px auto;
-    padding: 60px 0 0;
-    width: 358px;
-    height: 358px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 60px 0 0;
+  width: 358px;
+  height: 358px;
+
+  font-family: Inter;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 17px;
+
+color: #CCCCCC;
 }

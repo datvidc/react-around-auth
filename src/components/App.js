@@ -12,6 +12,7 @@ import EditAvatarPopup from './EditAvatarPopup.js';
 import AddPlacePopup from './AddPlacePopup.js';
 import ProtectedRoute from './ProtectedRoute.js';
 import Login from './Login';
+import Register from './Register';
 
 class App extends React.Component {
   constructor(props) {
@@ -137,15 +138,16 @@ class App extends React.Component {
         <CurrentUserContext.Provider value={this.state.currentUser}>
           <Switch >
             <Route path="/signin">
-              <Header aText={"signUp"} loggedIn={this.state.loggedIn} />
+              <Header aText={"Sign Up"} loggedIn={this.state.loggedIn} />
               <Login />
             </Route>
             <Route path="/signup">
-              <Header />
-              <Footer />
+              <Header aText={"Log In"} loggedIn={this.state.loggedIn}/>
+              <Register />
+              
             </Route>
             <ProtectedRoute path="/" loggedIn={this.state.loggedIn} component={Main} />
-        
+            <Footer />
           </Switch>
          
 
