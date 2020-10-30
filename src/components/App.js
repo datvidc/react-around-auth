@@ -11,10 +11,11 @@ import EditProfilePopup from './EditProfilePopup.js';
 import EditAvatarPopup from './EditAvatarPopup.js';
 import AddPlacePopup from './AddPlacePopup.js';
 import ProtectedRoute from './ProtectedRoute.js';
+import Login from './Login';
 
 class App extends React.Component {
   constructor(props) {
-    super(props);
+    super()
     this.state = {
       isEditPicOpen: false,
       isDeletePopOpen: false,
@@ -23,9 +24,10 @@ class App extends React.Component {
       isImagePopOpen: false,
       selectedCard: "",
       currentUser: {}, //name: "Lacking Gravitas", about: "SPaceSHip", avatar: defaultAvatarPicture
-      cards: [],
-      loggedIn: false
-      
+      loggedIn: false,
+      cards: []
+
+
     };
   }
 
@@ -135,17 +137,14 @@ class App extends React.Component {
         <CurrentUserContext.Provider value={this.state.currentUser}>
           <Switch >
             <Route path="/signin">
-            <Header />
-            <Main onCardClick={this.handleCardClick} onAvatarClick={this.handleEditAvatarClick} onEditProfile={this.handleEditProfileClick} onAddPlaceClick={this.handleAddPlaceClick} cards={this.state.cards} onCardLike={this.handleCardLike} onCardDelete={this.handleDeleteCard} />
-              
+              <Header aText={"signUp"} loggedIn={this.state.loggedIn} />
+              <Login />
             </Route>
             <Route path="/signup">
               <Header />
             </Route>
-            <ProtectedRoute path="/" loggedIn={this.state.loggedIn} component={Main} >
-              <Header />
-              <Main onCardClick={this.handleCardClick} onAvatarClick={this.handleEditAvatarClick} onEditProfile={this.handleEditProfileClick} onAddPlaceClick={this.handleAddPlaceClick} cards={this.state.cards} onCardLike={this.handleCardLike} onCardDelete={this.handleDeleteCard} />
-            </ProtectedRoute>
+            <ProtectedRoute path="/" loggedIn={this.state.loggedIn} component={Main} />
+        
           </Switch>
           <Footer />
 

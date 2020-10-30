@@ -5,13 +5,13 @@ function Header(props) {
   return (
   <header className="header">
     <img className="header__logo" src={Vector} alt="Around the US" />
-   <div className="header__loginMenu">
+   
     
-    { props.userEmail &&  
+    { props.loggedIn &&  
     <p className='header__email'></p>
     }
-    <button type="button" className="header__signBtn"> Login </button>
-  </div> 
+    <a className="header__signBtn" href="/react-around-auth/signin"> {props.aText} </a>
+  
   </header>
   );
 }

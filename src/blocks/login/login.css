@@ -1,0 +1,10 @@
+@import url(./__save/login__save.css);
+
+.login {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 60px 0 0;
+    width: 358px;
+
+}

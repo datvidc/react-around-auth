@@ -1,0 +1,27 @@
+.header__signBtn {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  display: inline-block;
+
+  margin-left: 24px;
+  display: flex;
+  align-items: center;
+  flex-grow: 0;
+  font-weight: 400;
+  text-decoration: none;
+  color: #fff;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  /* identical to box height, or 122% */
+
+  text-align: right;
+
+  color: #ffffff;
+}
