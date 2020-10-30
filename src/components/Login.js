@@ -9,10 +9,10 @@ function Login(props) {
                 <h2> Log in</h2>
 
                 <label>
-                    <input value={'Email || "" '} />
+                    <input className="login__input" value={'Email'} />
                 </label>
                 <label>
-                    <input value={"Password"} />
+                    <input className="login__input" value={"Password"} />
                 </label>
                 <button type="submit" className="login__save"> Login </button>
                 <Link to="/signup" className="login__prompt">Not a member yet? Sign up here!</Link>

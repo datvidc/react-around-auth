@@ -142,11 +142,12 @@ class App extends React.Component {
             </Route>
             <Route path="/signup">
               <Header />
+              <Footer />
             </Route>
             <ProtectedRoute path="/" loggedIn={this.state.loggedIn} component={Main} />
         
           </Switch>
-          <Footer />
+         
 
           <EditAvatarPopup isOpen={this.state.isEditPicOpen} onClose={this.closeAllPopups} onUpdateAvatar={this.handleEditAvatar} />
 
