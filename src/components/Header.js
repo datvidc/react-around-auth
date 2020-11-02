@@ -1,5 +1,6 @@
 import React from 'react';
 import Vector from '../images/Vector.svg';
+import {Link} from "react-router-dom";
 
 function Header(props) {
   return (
@@ -10,8 +11,8 @@ function Header(props) {
     { props.loggedIn &&  
     <p className='header__email'></p>
     }
-    <a className="header__signBtn" href="/react-around-auth/signin"> {props.aText} </a>
-  
+    <Link to={props.link} className="header__signBtn" > {props.aText} </Link>
+
   </header>
   );
 }

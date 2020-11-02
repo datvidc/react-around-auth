@@ -138,11 +138,11 @@ class App extends React.Component {
         <CurrentUserContext.Provider value={this.state.currentUser}>
           <Switch >
             <Route path="/signin">
-              <Header aText={"Sign Up"} loggedIn={this.state.loggedIn} />
+              <Header link={"/signup"} aText={"Sign Up"} loggedIn={this.state.loggedIn} />
               <Login />
             </Route>
             <Route path="/signup">
-              <Header aText={"Log In"} loggedIn={this.state.loggedIn}/>
+              <Header link={"/signin"} aText={"Log In"} loggedIn={this.state.loggedIn}/>
               <Register />
               
             </Route>
