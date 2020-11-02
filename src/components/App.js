@@ -144,11 +144,11 @@ class App extends React.Component {
           <Switch >
             <Route path="/signin">
               <Header link={"/signup"} aText={"Sign Up"} loggedIn={this.state.loggedIn} />
-              <Login />
+              <Login isOpen={this.state.isEditPicOpen} onClose={this.closeAllPopups} />
             </Route>
             <Route path="/signup">
               <Header link={"/signin"} aText={"Log In"} loggedIn={this.state.loggedIn}/>
-              <Register />
+              <Register isOpen={this.state.isEditPicOpen} onClose={this.closeAllPopups} />
               
             </Route>
             <ProtectedRoute path="/" loggedIn={this.state.loggedIn} component={Main} />
