@@ -18,6 +18,7 @@ class App extends React.Component {
   constructor(props) {
     super()
     this.state = {
+      isInfoToolTipOpen: false,
       isEditPicOpen: false,
       isDeletePopOpen: false,
       isChangePopOpen: false,
@@ -55,6 +56,9 @@ class App extends React.Component {
   handleEditProfileClick = () => {
     this.setState({ isChangePopOpen: true });
   }
+  handleInfoToolTip = () => {
+    this.setState({ isInfoToolTipOpen: true });
+  }
 
   handleAddPlaceClick = () => {
     this.setState({ isAddPopOpen: true });
@@ -76,6 +80,7 @@ class App extends React.Component {
 
   closeAllPopups = () => {
     this.setState({
+      isInfoToolTipOpen: false,
       isEditPicOpen: false,
       isDeletePopOpen: false,
       isChangePopOpen: false,
