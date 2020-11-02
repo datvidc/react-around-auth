@@ -1,9 +1,9 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-
+import InfoToolTips from "./InfoTooltip";
 
 function Login(props) {
-    
+
 
 
     return (
@@ -20,6 +20,7 @@ function Login(props) {
                 <button type="submit" className="login__save"> Login </button>
                 <Link to="/signup" className="login__prompt">Not a member yet? Sign up here!</Link>
             </form>
+
         </section>
 
 

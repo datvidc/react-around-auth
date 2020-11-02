@@ -24,7 +24,8 @@ props.onSubmit
       <form className="popup__edit-form" onSubmit={props.onSubmit}>
         <h3 className="popup__heading"> {props.heading} </h3>
           {props.children}
-        <button  type="submit" className="popup__save"> {props.buttonText} </button>
+        { !props.noButton && <button  type="submit" className="popup__save"> {props.buttonText} </button>  }
+        
       </form>
     </div>
   </div>
