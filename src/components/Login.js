@@ -1,9 +1,12 @@
 import React from 'react';
+import { useState } from 'react'
 import {Link} from "react-router-dom";
 import InfoToolTips from "./InfoTooltip";
 
 function Login(props) {
+    const [emailVal, setEmail] = useState("");
 
+    const handleEmailChange = (e) => setEmail(e.currentTarget.value);
 
 
     return (
@@ -12,7 +15,7 @@ function Login(props) {
                 <h2 className="login__heading"> Log in</h2>
 
                 <label>
-                    <input className="login__input" defaultValue={'Email'} />
+                    <input  onChange={handleEmailChange} className="login__input" defaultValue={'Email'} />
                 </label>
                 <label>
                     <input className="login__input" defaultValue={"Password"} />
