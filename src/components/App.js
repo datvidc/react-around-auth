@@ -26,7 +26,7 @@ class App extends React.Component {
       isImagePopOpen: false,
       selectedCard: "",
       currentUser: {}, //name: "Lacking Gravitas", about: "SPaceSHip", avatar: defaultAvatarPicture
-      loggedIn: false,
+      loggedIn: true,
       cards: []
 
 
@@ -151,7 +151,7 @@ class App extends React.Component {
               <Register isOpen={this.state.isInfoToolTipOpen} onClose={this.closeAllPopups} />
               
             </Route>
-            <ProtectedRoute path="/" loggedIn={this.state.loggedIn} component={Main} />
+            <ProtectedRoute path="/" loggedIn={this.state.loggedIn} onCardClick={this.handleCardClick} onAvatarClick={this.handleEditAvatarClick} onEditProfile={this.handleEditProfileClick} onAddPlaceClick={this.handleAddPlaceClick} cards={this.state.cards} onCardLike={this.handleCardLike} onCardDelete={this.handleDeleteCard} component={Main} />
             <Footer />
           </Switch>
          
