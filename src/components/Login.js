@@ -5,9 +5,14 @@ import InfoToolTips from "./InfoTooltip";
 
 function Login(props) {
     const [emailVal, setEmail] = useState("");
-
-    const handleEmailChange = (e) => setEmail(e.currentTarget.value);
-
+    const [validEmail, updateValidEmailState] = useState("true");
+    
+    const handleEmailChange = (e) => {
+        setEmail(e.currentTarget.value);
+        console.log(emailVal);
+    }
+    
+    const errClass = "^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$";
 
     return (
         <section className="login">
@@ -15,12 +20,19 @@ function Login(props) {
                 <h2 className="login__heading"> Log in</h2>
 
                 <label>
-                    <input  onChange={handleEmailChange} className="login__input" defaultValue={'Email'} />
+                    <input  
+                        type="email" 
+                        onChange={handleEmailChange} 
+                        { emailVal.match(errClass) ? className="login__input" : className="login__input login--error" }
+                        placeholder={'Email'}
+                    />
                 </label>
                 <label>
-                    <input className="login__input" defaultValue={"Password"} />
+                    <input 
+                    className="login__input" 
+                    placeholder={"Password"} />
                 </label>
-                <button type="submit" className="login__save"> Login </button>
+                <button onClick={alert123} type="submit" className="login__save"> Login </button>
                 <Link to="/signup" className="login__prompt">Not a member yet? Sign up here!</Link>
             </form>
 
