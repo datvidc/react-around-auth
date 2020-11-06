@@ -10,7 +10,6 @@ function Login(props) {
     const handleEmailChange = (e) => {
         setEmail(e.currentTarget.value);
         errorActive(e);
-        console.log(emailVal);
     }
     const errorActive = (email) => {
          if ( errorClass(email)) {
@@ -22,7 +21,10 @@ function Login(props) {
         }
     }
 
-
+    const alert123 = (e) => {
+        e.preventDefault();
+        console.log(validEmail);
+    }
     const errorClass = (value) => {
         const errClass = "^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$";
         return value.toString().match(errClass);
@@ -48,7 +50,7 @@ function Login(props) {
                     className="login__input" 
                     placeholder={"Password"} />
                 </label>
-                <button type="submit" className="login__save"> Login </button>
+                <button onClick={alert123} type="submit" className="login__save"> Login </button>
                 <Link to="/signup" className="login__prompt">Not a member yet? Sign up here!</Link>
             </form>
 
