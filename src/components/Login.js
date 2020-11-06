@@ -5,14 +5,30 @@ import InfoToolTips from "./InfoTooltip";
 
 function Login(props) {
     const [emailVal, setEmail] = useState("");
-    const [validEmail, updateValidEmailState] = useState("true");
+    const [validEmail, updateValidEmailState] = useState("false");
     
     const handleEmailChange = (e) => {
         setEmail(e.currentTarget.value);
+        errorActive(e);
         console.log(emailVal);
     }
+    const errorActive = (email) => {
+         if ( errorClass(email)) {
+            updateValidEmailState("true");
+            console.log("true");
+        } else {
+            updateValidEmailState("false");
+            console.log("false");
+        }
+    }
+
+
+    const errorClass = (value) => {
+        const errClass = "^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$";
+        return value.toString().match(errClass);
+    }
+
     
-    const errClass = "^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$";
 
     return (
         <section className="login">
@@ -23,7 +39,7 @@ function Login(props) {
                     <input  
                         type="email" 
                         onChange={handleEmailChange} 
-                        { emailVal.match(errClass) ? className="login__input" : className="login__input login--error" }
+                        className={` ${ validEmail ? "login__input" : "login__input login--error"} `}
                         placeholder={'Email'}
                     />
                 </label>
@@ -32,7 +48,7 @@ function Login(props) {
                     className="login__input" 
                     placeholder={"Password"} />
                 </label>
-                <button onClick={alert123} type="submit" className="login__save"> Login </button>
+                <button type="submit" className="login__save"> Login </button>
                 <Link to="/signup" className="login__prompt">Not a member yet? Sign up here!</Link>
             </form>
 
