@@ -31,7 +31,7 @@ function Login(props) {
                     placeholder={"Password"}
                     type="password" />
                 </label>
-                <button onClick={alert123} type="submit" className="login__save"> Login </button>
+                <button type="submit" className="login__save"> Login </button>
                 <Link to="/signup" className="login__prompt">Not a member yet? Sign up here!</Link>
             </form>
 
