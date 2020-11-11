@@ -17,7 +17,7 @@ function Register(props) {
                     />
                 </label>
                 <label>
-                    <input className="login__input" defaultValue={"Password"} />
+                    <input type="password" className="login__input" defaultValue={"Password"} />
                 </label>
                 <button type="submit" className="login__save"> Sign up </button>
                 <Link to="/signin" className="login__prompt">Already a member? Log in here!</Link>
