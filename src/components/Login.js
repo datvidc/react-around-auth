@@ -5,33 +5,11 @@ import InfoToolTips from "./InfoTooltip";
 
 function Login(props) {
     const [emailVal, setEmail] = useState("");
-    const [validEmail, updateValidEmailState] = useState("false");
     
     const handleEmailChange = (e) => {
         setEmail(e.currentTarget.value);
-        errorActive(e);
     }
-    const errorActive = (email) => {
-         if ( errorClass(email)) {
-            updateValidEmailState("true");
-            console.log("true");
-        } else {
-            updateValidEmailState("false");
-            console.log("false");
-        }
-    }
-
-    const alert123 = (e) => {
-        e.preventDefault();
-        console.log(validEmail);
-        console.log(emailVal);
-    }
-    const errorClass = (value) => {
-        const errClass = "^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$";
-        return value.toString().match(errClass);
-    }
-
-    
+        
 
     return (
         <section className="login">
