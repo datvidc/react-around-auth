@@ -9,7 +9,12 @@ function Register(props) {
                 <h2 className="login__heading"> Sign up </h2>
 
                 <label>
-                    <input className="login__input" defaultValue={'Email'} />
+                    <input 
+                        type="email" 
+                        className="login__input" 
+                        placeholder={'Email'} 
+                        pattern="(?!(^[.-].*|[^@]*[.-]@|.*\.{2,}.*)|^.{254}.)([a-zA-Z0-9!#$%&'*+\/=?^_`{|}~.-]+@)(?!-.*|.*-\.)([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,15}"
+                    />
                 </label>
                 <label>
                     <input className="login__input" defaultValue={"Password"} />

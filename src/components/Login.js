@@ -24,6 +24,7 @@ function Login(props) {
     const alert123 = (e) => {
         e.preventDefault();
         console.log(validEmail);
+        console.log(emailVal);
     }
     const errorClass = (value) => {
         const errClass = "^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$";
@@ -41,14 +42,16 @@ function Login(props) {
                     <input  
                         type="email" 
                         onChange={handleEmailChange} 
-                        className={` ${ validEmail ? "login__input" : "login__input login--error"} `}
+                        className="login__input login--error"
                         placeholder={'Email'}
+                        pattern="(?!(^[.-].*|[^@]*[.-]@|.*\.{2,}.*)|^.{254}.)([a-zA-Z0-9!#$%&'*+\/=?^_`{|}~.-]+@)(?!-.*|.*-\.)([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,15}"
                     />
                 </label>
                 <label>
                     <input 
                     className="login__input" 
-                    placeholder={"Password"} />
+                    placeholder={"Password"}
+                    type="password" />
                 </label>
                 <button onClick={alert123} type="submit" className="login__save"> Login </button>
                 <Link to="/signup" className="login__prompt">Not a member yet? Sign up here!</Link>
