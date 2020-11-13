@@ -1,0 +1,21 @@
+
+.popup__checkMark {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    background: #FFFFFF;
+    border-radius: 10px;
+    margin-top: 195px;
+    max-width: 330px;
+    max-height: 430px;
+    display: flex;
+    padding: 10px;
+    box-sizing: border-box;
+    align-items: center;
+
+}
+
+.popup__successIcon {
+    height: 120px;
+    width: 120px;
+}

@@ -1,11 +1,13 @@
 @import url(./_addcard/popup__container_addcard.css);
 @import url(./_delete/popup__container_delete.css);
 .popup__container {
+  position: absolute;
+    left: 50%;
+    transform: translate(-50%);
   background: #FFFFFF;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
-  margin-left: auto;
-  margin-right: auto;
+
   margin-top: 300px;
   width: 240px;
   max-width: 75%;

@@ -18,8 +18,8 @@ props.onSubmit
 
 
 
-  <div className={`popup popup_type_${props.name} ${isOpenClass}`}>
-    <div className="popup__container">
+  <div className={`popup popup__${props.name} ${isOpenClass}`}>
+    <div className={props.noButton ? "popup__checkMark" : "popup__container" } >
       <button onClick={props.closeItAll} type="submit" className="popup__close"> </button>
       <form className="popup__edit-form" onSubmit={props.onSubmit}>
         <h3 className="popup__heading"> {props.heading} </h3>

@@ -13,12 +13,13 @@ import AddPlacePopup from './AddPlacePopup.js';
 import ProtectedRoute from './ProtectedRoute.js';
 import Login from './Login';
 import Register from './Register';
+import InfoToolTip from './InfoTooltip';
 
 class App extends React.Component {
   constructor(props) {
     super()
     this.state = {
-      isInfoToolTipOpen: false,
+      isInfoToolTipOpen: true,
       isEditPicOpen: false,
       isDeletePopOpen: false,
       isChangePopOpen: false,
@@ -164,11 +165,9 @@ class App extends React.Component {
           <EditProfilePopup isOpen={this.state.isChangePopOpen} onClose={this.closeAllPopups} onUpdateUser={this.handleEditUser} />
 
           <AddPlacePopup isAddPopOpen={this.state.isAddPopOpen} closeAllPopups={this.closeAllPopups} onAddPlace={this.handleAddPlaceSubmit} />
-
-
-
-          <ImagePopup card={this.state.selectedCard} onClose={this.closeAllPopups}>
+            <ImagePopup card={this.state.selectedCard} onClose={this.closeAllPopups}>
           </ImagePopup>
+          <InfoToolTip isOpen={this.state.isInfoToolTipOpen} success={"true"} closeAllPopups={this.closeAllPopups}  /> 
         </CurrentUserContext.Provider>
       </div>
     );

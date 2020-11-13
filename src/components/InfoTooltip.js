@@ -13,8 +13,14 @@ function InfoToolTip(props) {
     return (
 
     <>
-        <PopupWithForm noButton="true" name="infoToolTip" isOpen={props.isOpen} heading="Edit profile" buttonText="Save" closeItAll={props.onClose} >
-
+        <PopupWithForm noButton="true"  name="infoToolTip" isOpen={props.isOpen} closeItAll={props.onClose} >
+            <img 
+                className="popup__successIcon"
+                src={icon}
+                alt="CheckMark"
+            />
+            <h2> {message} </h2>
+        
         </PopupWithForm>
 
     </>
