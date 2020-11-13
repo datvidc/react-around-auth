@@ -1,6 +1,6 @@
 .popup__close {
   top: -50px;
-  left: 220px;
+  right: -45px;
   background-repeat: no-repeat;
   background-size: cover;
   width: 58px;
@@ -19,8 +19,8 @@
 
 @media screen and (min-width: 620px) {
   .popup__close {
-    position: inherit;
-    top: -40px;
-    left: 350px;
+    position: absolute;
+    top: -50px;
+    right: -50px;
   }
 }
