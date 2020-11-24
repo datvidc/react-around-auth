@@ -19,7 +19,7 @@ class App extends React.Component {
   constructor(props) {
     super()
     this.state = {
-      isInfoToolTipOpen: true,
+      isInfoToolTipOpen: false,
       isEditPicOpen: false,
       isDeletePopOpen: false,
       isChangePopOpen: false,

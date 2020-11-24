@@ -5,12 +5,24 @@ import InfoToolTips from "./InfoTooltip";
 
 function Login(props) {
     const [emailVal, setEmail] = useState("");
-    
+    const [passwordVal, setPassword] = useState("");
+
     const handleEmailChange = (e) => {
         setEmail(e.currentTarget.value);
     }
-        
 
+    const handlePasswordChange = (e) => {
+        setPassword(e.currentTarget.value);
+    }
+        
+    const handleBtnClick = (e) => {
+        e.preventDefault();
+        console.log("buttonClicked");
+    }
+
+
+
+    
     return (
         <section className="login">
             <form action="#" className="login__form">
@@ -31,7 +43,7 @@ function Login(props) {
                     placeholder={"Password"}
                     type="password" />
                 </label>
-                <button type="submit" className="login__save"> Login </button>
+                <button onClick={handleBtnClick} type="submit" className="login__save"> Login </button>
                 <Link to="/signup" className="login__prompt">Not a member yet? Sign up here!</Link>
             </form>
 
