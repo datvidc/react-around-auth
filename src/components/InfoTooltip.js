@@ -10,10 +10,15 @@ function InfoToolTip(props) {
 
     const icon = props.success ? successIcon : failureIcon;
 
+    const handleClosePopup = (e) => {
+        e.preventDefault();
+        props.onClose();
+    }
+
     return (
 
         <>
-            <PopupWithForm noButton="true" name="infoToolTip" isOpen={props.isOpen} closeItAll={props.onClose} >
+            <PopupWithForm noButton="true" name="infoToolTip" isOpen={props.isOpen} closeItAll={handleClosePopup} >
                 <div className="popup__infoToolTip">
                     <img
                         className="popup__successIcon"

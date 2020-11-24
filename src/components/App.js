@@ -167,7 +167,7 @@ class App extends React.Component {
           <AddPlacePopup isAddPopOpen={this.state.isAddPopOpen} closeAllPopups={this.closeAllPopups} onAddPlace={this.handleAddPlaceSubmit} />
             <ImagePopup card={this.state.selectedCard} onClose={this.closeAllPopups}>
           </ImagePopup>
-          <InfoToolTip isOpen={this.state.isInfoToolTipOpen} success={"true"} closeAllPopups={this.closeAllPopups}  /> 
+          <InfoToolTip isOpen={this.state.isInfoToolTipOpen} success={"true"} onClose={this.closeAllPopups}  /> 
         </CurrentUserContext.Provider>
       </div>
     );
