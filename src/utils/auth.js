@@ -5,9 +5,30 @@ class Auth{
 
 
   }
+
+
+  signIn(email, password) {
+    return fetch(this._RegisterUrl.concat("/signin"), {
+      method: "POST",
+      headers: this._headerinfo,
+      body: JSON.stringify({
+        password: password,
+        email: email
+      })
+    }).then(res => {
+      if(res.ok) {
+        console.log(res);
+        return res.json();
+      }
+    }).catch(res => {
+      console.log(res);
+    })
+  }
+
+
   signUp(email, password) {
  
-   return fetch(this._RegisterUrl, {
+   return fetch(this._RegisterUrl.concat("/signup"), {
       method: "POST",
       headers: this._headerinfo,
       body: JSON.stringify({
@@ -35,7 +56,7 @@ class Auth{
 
 
 const auth = new Auth({
-  url: 'https://register.nomoreparties.co/signup',
+  url: 'https://register.nomoreparties.co',
   header: {
     "Content-Type": "application/json"
   }

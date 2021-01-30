@@ -41,6 +41,7 @@ class App extends React.Component {
 
 
   handleLogin = (value) => {
+    
     this.setState({ isLoggedIn: value });
 
   }
@@ -88,16 +89,16 @@ class App extends React.Component {
 
   }
 
-  handleRegister(userEmail, userPassword) {
+  handleRegister = (userEmail, userPassword) => {
     auth.signUp(userEmail, userPassword)
       .then((res) => {
-        console.log(res.data.email);
-        console.log(this.handleEmailUpdate);
+        console.log(res);
+        this.handleEmailUpdate(res.data.email);
         return res.json;
         }).catch((err) => {
         console.log(err);
       });
-      this.handleEmailUpdate(userEmail);
+      
 }
   closeAllPopups = () => {
     this.setState({
