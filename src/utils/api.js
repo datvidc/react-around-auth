@@ -171,6 +171,7 @@ class Api {
   }
 
 
+
   getInitialCards() {
     return fetch("https://around.nomoreparties.co/v1/group-1/cards", this._header)
       .then(res => {
@@ -184,11 +185,12 @@ class Api {
 
   }
 }
+
+
 const api = new Api('https://register.nomoreparties.co', {
   headers: {
     authorization: "3aa990c2-b590-4bfb-9403-af52e9b89792",
     "Content-Type": "application/json"
-
   }
 });
 

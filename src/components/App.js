@@ -14,6 +14,7 @@ import ProtectedRoute from './ProtectedRoute.js';
 import Login from './Login';
 import Register from './Register';
 import InfoToolTip from './InfoTooltip';
+import auth from '../utils/auth';
 
 class App extends React.Component {
   constructor(props) {
@@ -27,15 +28,25 @@ class App extends React.Component {
       isImagePopOpen: false,
       selectedCard: "",
       currentUser: {}, //name: "Lacking Gravitas", about: "SPaceSHip", avatar: defaultAvatarPicture
-      loggedIn: false,
+      isLoggedIn: false,
+      userEmail: null,
       cards: []
 
 
     };
+    
   }
 
+
+
+
   handleLogin = (value) => {
-    this.setState({ loggedIn: value });
+    this.setState({ isLoggedIn: value });
+
+  }
+
+  handleEmailUpdate(uEmail) {
+    this.setState({ userEmail: uEmail })
   }
 
   handleCardClick = (value) => {
@@ -77,8 +88,17 @@ class App extends React.Component {
 
   }
 
-
-
+  handleRegister(userEmail, userPassword) {
+    auth.signUp(userEmail, userPassword)
+      .then((res) => {
+        console.log(res.data.email);
+        console.log(this.handleEmailUpdate);
+        return res.json;
+        }).catch((err) => {
+        console.log(err);
+      });
+      this.handleEmailUpdate(userEmail);
+}
   closeAllPopups = () => {
     this.setState({
       isInfoToolTipOpen: false,
@@ -148,14 +168,14 @@ class App extends React.Component {
               <Login isOpen={this.state.isInfoToolTipOpen} onClose={this.closeAllPopups} />
             </Route>
             <Route path="/signup">
-              <Header link={"/signin"} aText={"Log In"} loggedIn={this.state.loggedIn}/>
-              <Register isOpen={this.state.isInfoToolTipOpen} onClose={this.closeAllPopups} />
-              
+              <Header link={"/signin"} aText={"Log In"} loggedIn={this.state.loggedIn} />
+              <Register isOpen={this.state.isInfoToolTipOpen} onClose={this.closeAllPopups} onRegister={this.handleRegister} />
+
             </Route>
             <ProtectedRoute path="/" loggedIn={this.state.loggedIn} onCardClick={this.handleCardClick} onAvatarClick={this.handleEditAvatarClick} onEditProfile={this.handleEditProfileClick} onAddPlaceClick={this.handleAddPlaceClick} cards={this.state.cards} onCardLike={this.handleCardLike} onCardDelete={this.handleDeleteCard} component={Main} />
             <Footer />
           </Switch>
-         
+
 
           <EditAvatarPopup isOpen={this.state.isEditPicOpen} onClose={this.closeAllPopups} onUpdateAvatar={this.handleEditAvatar} />
 
@@ -165,9 +185,9 @@ class App extends React.Component {
           <EditProfilePopup isOpen={this.state.isChangePopOpen} onClose={this.closeAllPopups} onUpdateUser={this.handleEditUser} />
 
           <AddPlacePopup isAddPopOpen={this.state.isAddPopOpen} closeAllPopups={this.closeAllPopups} onAddPlace={this.handleAddPlaceSubmit} />
-            <ImagePopup card={this.state.selectedCard} onClose={this.closeAllPopups}>
+          <ImagePopup card={this.state.selectedCard} onClose={this.closeAllPopups}>
           </ImagePopup>
-          <InfoToolTip isOpen={this.state.isInfoToolTipOpen} success={"true"} onClose={this.closeAllPopups}  /> 
+          <InfoToolTip isOpen={this.state.isInfoToolTipOpen} success={"true"} onClose={this.closeAllPopups} />
         </CurrentUserContext.Provider>
       </div>
     );
