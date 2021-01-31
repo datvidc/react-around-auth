@@ -18,6 +18,7 @@ function Login(props) {
     const handleLoginBtnClick = (e) => {
         e.preventDefault();
         console.log("buttonClicked");
+        props.onSignIn(emailVal, passwordVal);
     }
 
 

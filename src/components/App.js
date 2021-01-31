@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, useHistory, withRouter } from 'react-router-dom';
+import { Switch, Route, Link, Redirect, useHistory, withRouter } from 'react-router-dom';
 import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
@@ -34,16 +34,16 @@ class App extends React.Component {
 
 
     };
-    
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
 
 
 
-  handleLogin = (value) => {
-    
-    this.setState({ isLoggedIn: value });
+  handleLogin(value) {
 
+    this.setState({ isLoggedIn: value });
+    this.props.history.push('/');
   }
 
   handleEmailUpdate(uEmail) {
@@ -88,18 +88,33 @@ class App extends React.Component {
     })
 
   }
+  handleSignIn = (userEmail, userPassword) => {
+    auth.signIn(userEmail, userPassword)
+      .then((res) => {
+        console.log(res);
+        if (res.token) {
+          localStorage.setItem("jwt", res.jwt);
+          this.handleLogin(true);
+          return res;
+        }
+        return res.json;
+      }).catch((err) => {
+        console.log(err);
+      });
+  }
 
   handleRegister = (userEmail, userPassword) => {
     auth.signUp(userEmail, userPassword)
       .then((res) => {
         console.log(res);
         this.handleEmailUpdate(res.data.email);
+        this.handleSignIn(userEmail, userPassword);
         return res.json;
-        }).catch((err) => {
+      }).catch((err) => {
         console.log(err);
       });
-      
-}
+
+  }
   closeAllPopups = () => {
     this.setState({
       isInfoToolTipOpen: false,
@@ -166,14 +181,14 @@ class App extends React.Component {
           <Switch >
             <Route path="/signin">
               <Header link={"/signup"} aText={"Sign Up"} loggedIn={this.state.loggedIn} />
-              <Login isOpen={this.state.isInfoToolTipOpen} onClose={this.closeAllPopups} />
+              <Login isOpen={this.state.isInfoToolTipOpen} onClose={this.closeAllPopups} onSignIn={this.handleSignIn} />
             </Route>
             <Route path="/signup">
               <Header link={"/signin"} aText={"Log In"} loggedIn={this.state.loggedIn} />
               <Register isOpen={this.state.isInfoToolTipOpen} onClose={this.closeAllPopups} onRegister={this.handleRegister} />
 
             </Route>
-            <ProtectedRoute path="/" loggedIn={this.state.loggedIn} onCardClick={this.handleCardClick} onAvatarClick={this.handleEditAvatarClick} onEditProfile={this.handleEditProfileClick} onAddPlaceClick={this.handleAddPlaceClick} cards={this.state.cards} onCardLike={this.handleCardLike} onCardDelete={this.handleDeleteCard} component={Main} />
+            <ProtectedRoute path="/" loggedIn={this.state.isLoggedIn} onCardClick={this.handleCardClick} onAvatarClick={this.handleEditAvatarClick} onEditProfile={this.handleEditProfileClick} onAddPlaceClick={this.handleAddPlaceClick} cards={this.state.cards} onCardLike={this.handleCardLike} onCardDelete={this.handleDeleteCard} component={Main} />
             <Footer />
           </Switch>
 
@@ -194,4 +209,4 @@ class App extends React.Component {
     );
   }
 }
-export default App;
+export default withRouter (App);
