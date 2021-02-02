@@ -88,6 +88,22 @@ class App extends React.Component {
     })
 
   }
+
+  checkToken = (token) => {
+    auth.getCurrentUser(token)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  handleSignout = () => {
+    localStorage.removeItem("jwt");
+    this.handleLogin(false);
+  }
+
   handleSignIn = (userEmail, userPassword) => {
     auth.signIn(userEmail, userPassword)
       .then((res) => {
@@ -97,8 +113,8 @@ class App extends React.Component {
           this.handleLogin(true);
           auth.getCurrentUser(res.token)
             .then((res) => {
-              console.log(res);
-          })
+              this.handleUpdateUser(res.data)
+            })
           return res;
         }
         return res.json;
@@ -192,7 +208,7 @@ class App extends React.Component {
               <Register isOpen={this.state.isInfoToolTipOpen} onClose={this.closeAllPopups} onRegister={this.handleRegister} />
 
             </Route>
-            <ProtectedRoute path="/" loggedIn={this.state.isLoggedIn} onCardClick={this.handleCardClick} onAvatarClick={this.handleEditAvatarClick} onEditProfile={this.handleEditProfileClick} onAddPlaceClick={this.handleAddPlaceClick} cards={this.state.cards} onCardLike={this.handleCardLike} onCardDelete={this.handleDeleteCard} component={Main} />
+            <ProtectedRoute path="/" loggedIn={this.state.isLoggedIn} onCardClick={this.handleCardClick} onAvatarClick={this.handleEditAvatarClick} onEditProfile={this.handleEditProfileClick} onAddPlaceClick={this.handleAddPlaceClick} cards={this.state.cards} onCardLike={this.handleCardLike} onCardDelete={this.handleDeleteCard} logout={this.handleSignout} aText={"Log Out"} component={Main} />
             <Footer />
           </Switch>
 
@@ -213,4 +229,4 @@ class App extends React.Component {
     );
   }
 }
-export default withRouter (App);
+export default withRouter(App);
