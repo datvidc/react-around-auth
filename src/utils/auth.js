@@ -1,4 +1,4 @@
-class Auth{
+class Auth {
   constructor(options) {
     this._RegisterUrl = options.url;
     this._headerinfo = options.header;
@@ -27,8 +27,8 @@ class Auth{
 
 
   signUp(email, password) {
- 
-   return fetch(this._RegisterUrl.concat("/signup"), {
+
+    return fetch(this._RegisterUrl.concat("/signup"), {
       method: "POST",
       headers: this._headerinfo,
       body: JSON.stringify({
@@ -38,7 +38,7 @@ class Auth{
         password: password,
         email: email
       })
-    }) .then(res => {
+    }).then(res => {
       if (res.ok) {
         console.log(res);
         return res.json();
@@ -46,6 +46,28 @@ class Auth{
     }).catch(res => {
       console.log(res);
     })
+
+
+  }
+
+  getCurrentUser(jwt) {
+
+
+    return fetch(this._RegisterUrl.concat("/users/me"), {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${jwt}`
+      }
+    }).then(res => {
+      if (res.ok) {
+        console.log(res);
+        return res.json();
+      }
+    }).catch(res => {
+      console.log(res);
+    })
+
 
 
   }

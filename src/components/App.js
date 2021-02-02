@@ -27,7 +27,7 @@ class App extends React.Component {
       isAddPopOpen: false,
       isImagePopOpen: false,
       selectedCard: "",
-      currentUser: {}, //name: "Lacking Gravitas", about: "SPaceSHip", avatar: defaultAvatarPicture
+      currentUser: {}, //name: "Lacking Gravitas", about: "SPaceSHip", avatar: defaultAvatarPicture, _id" some id.
       isLoggedIn: false,
       userEmail: null,
       cards: []
@@ -93,8 +93,12 @@ class App extends React.Component {
       .then((res) => {
         console.log(res);
         if (res.token) {
-          localStorage.setItem("jwt", res.jwt);
+          localStorage.setItem("jwt", res.token);
           this.handleLogin(true);
+          auth.getCurrentUser(res.token)
+            .then((res) => {
+              console.log(res);
+          })
           return res;
         }
         return res.json;
