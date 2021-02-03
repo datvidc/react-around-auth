@@ -4,23 +4,32 @@ import { Link } from "react-router-dom";
 
 function Header(props) {
   return (
-    <header className="header">
+<header className={ (props.loggedIn ? "header--signedIn" : "header")} >
 
 
-
-      { props.loggedIn ? '<img className="header__logo utils__is-hiden" src={Vector} alt="Around the US"' : '<img className="header__logo" src={Vector} alt="Around the US" />'
-      };
-
+    {/* fire if user is logged in */ }
       { props.loggedIn &&
-        <p className='header__email'></p>
-      },
+    
+        <div className="header--flex">
+          <p className='header__email header__signBtn'>{props.userEmail} </p>
+          <Link to={props.link} onClick={props.logout} className="header__signBtn--signedIn" > {props.aText} </Link>
+        </div>
+     
+      }
+{/* fire if user is NOT logged in */}
 
-      { props.loggedIn ? '<Link to={props.link} onclick={props.logout} className="header__signBtn" > {props.aText} </Link>' : '<Link to={props.link} className="header__signBtn" > {props.aText} </Link>'
-      };
+      {!props.loggedIn &&
+        <>
 
+          <img className="header__logo" src={Vector} alt="Around the US" />
 
+          <Link to={props.link} className="header__signBtn" > {props.aText} </Link>
+        </>
+      }
 
-    </header>
+</header>
+
+    
   );
 }
 export default Header;

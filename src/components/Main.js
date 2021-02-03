@@ -13,7 +13,7 @@ function Main(props) {
 
   return (
     <main>
-      <Header loggedIn={props.loggedIn} logout={props.logout} aText={"Log Out"} />
+      <Header link={"/"} userEmail={currentUser.email} loggedIn={props.loggedIn} logout={props.logout} aText={"Log Out"} />
       <section className="profile">
         <div className="profile__avatar-overlay" onClick={props.onAvatarClick}>
           <img src={currentUser.avatar} alt={currentUser.name} className="profile__avatar" />

@@ -1,7 +1,8 @@
 @import url(./__logo/header__logo.css);
 @import url(./__loginMenu/header__loginMenu.css);
 @import  url(./__signBtn/header__signBtn.css);
-
+@import url(./--signedIn/header--signedIn.css);
+@import url(./--flex/header--flex.css);
 
 .header {
   display: flex;

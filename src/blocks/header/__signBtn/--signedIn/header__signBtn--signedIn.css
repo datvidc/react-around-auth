@@ -1,6 +1,4 @@
-@import url('./--signedIn/header__signBtn--signedIn.css');
-
-.header__signBtn {
+.header__signBtn--signedIn {
   padding: 0;
   border: none;
   font: inherit;
@@ -15,7 +13,7 @@
   flex-grow: 0;
   font-weight: 400;
   text-decoration: none;
-  color: #fff;
+  color: #a9a9a9;
   font-family: Inter;
   font-style: normal;
   font-weight: normal;
@@ -24,6 +22,4 @@
   /* identical to box height, or 122% */
 
   text-align: right;
-
-  color: #ffffff;
 }

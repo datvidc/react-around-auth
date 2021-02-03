@@ -92,6 +92,10 @@ class App extends React.Component {
   checkToken = (token) => {
     auth.getCurrentUser(token)
       .then((res) => {
+        if (res.ok) {
+          this.handleLogin(true);
+          this.handleUpdateUser(res.data)
+        }
         console.log(res);
       })
       .catch((err) => {
@@ -148,13 +152,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    api.getUser()
-      .then(res => {
-        this.handleUpdateUser(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const token = localStorage.getItem('jwt');
+    if (token) {
+      this.checkToken(token);
+
+
+    }
     //now for generating cards
     api.getInitialCards()
       .then(res => {
