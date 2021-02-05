@@ -4,11 +4,22 @@ import { Link } from "react-router-dom";
 import InfoToolTips from "./InfoTooltip";
 
 function Login(props) {
+    /*     const [validForm, setValidForm] = useState(false);
+        const [emailerror, setEmailError] = useState(false); */
     const [emailVal, setEmail] = useState("");
     const [passwordVal, setPassword] = useState("");
 
+
     const handleEmailChange = (e) => {
         setEmail(e.currentTarget.value);
+        /*  const emailValidationRegEx = /(?!(^[.-].*|[^@]*[.-]@|.*\.{2,}.*)|^.{254}.)([a-zA-Z0-9!#$%&'*+\/=?^_`{|}~.-]+@)(?!-.*|.*-\.)([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,15}/;
+        if (emailValidationRegEx.test(emailVal)) {
+            setValidForm(true);
+            setEmailError(false);
+        } else {
+            console.log('error');
+        } */
+
     }
 
     const handlePasswordChange = (e) => {
@@ -18,7 +29,9 @@ function Login(props) {
     const handleLoginBtnClick = (e) => {
         e.preventDefault();
         console.log("buttonClicked");
+
         props.onSignIn(emailVal, passwordVal);
+
     }
 
 
@@ -33,7 +46,7 @@ function Login(props) {
                     <input
                         type="email"
                         onChange={handleEmailChange}
-                        className="login__input login--error"
+                        className={'login__input'}
                         placeholder={'Email'}
                         pattern="(?!(^[.-].*|[^@]*[.-]@|.*\.{2,}.*)|^.{254}.)([a-zA-Z0-9!#$%&'*+\/=?^_`{|}~.-]+@)(?!-.*|.*-\.)([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,15}"
                     />
@@ -43,10 +56,11 @@ function Login(props) {
                         onChange={handlePasswordChange}
                         className="login__input"
                         placeholder={"Password"}
-                        pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/"
+
                         type="password" />
                 </label>
                 <button onClick={handleLoginBtnClick} type="submit" className="login__save"> Login </button>
+
                 <Link to="/signup" className="login__prompt">Not a member yet? Sign up here!</Link>
             </form>
 

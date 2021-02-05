@@ -30,6 +30,7 @@ class App extends React.Component {
       currentUser: {}, //name: "Lacking Gravitas", about: "SPaceSHip", avatar: defaultAvatarPicture, _id" some id.
       isLoggedIn: false,
       userEmail: null,
+      jwt: null,
       cards: []
 
 
@@ -38,10 +39,31 @@ class App extends React.Component {
   }
 
 
+  handleSignIn = (userEmail, userPassword) => {
+    auth.signIn(userEmail, userPassword)
+      .then((res) => {
+        console.log(res);
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+          this.handleLogin(true);
+
+          auth.getCurrentUser(res.token)
+            .then((res) => {
+              this.handleUpdateUser(res.data)
+              this.handleInfoToolTip(true);
+              this.componentDidMount();
+            })
+          return res;
+        }
+        return res.json;
+      }).catch((err) => {
+        this.handleInfoToolTip(true);
+        console.log(err);
+      });
+  }
 
 
   handleLogin(value) {
-
     this.setState({ isLoggedIn: value });
     this.props.history.push('/');
   }
@@ -51,6 +73,7 @@ class App extends React.Component {
   }
 
   handleCardClick = (value) => {
+    console.log()
     this.setState({ selectedCard: value });
 
   }
@@ -61,6 +84,7 @@ class App extends React.Component {
 
   handleUpdateUser = (valueArr) => {
     this.setState({ currentUser: valueArr })
+    this.handleEmailUpdate(valueArr.email);
   }
 
   handleEditAvatarClick = () => {
@@ -69,8 +93,10 @@ class App extends React.Component {
   handleEditProfileClick = () => {
     this.setState({ isChangePopOpen: true });
   }
-  handleInfoToolTip = () => {
+  handleInfoToolTip = (value) => {
     this.setState({ isInfoToolTipOpen: true });
+
+
   }
 
   handleAddPlaceClick = () => {
@@ -78,13 +104,14 @@ class App extends React.Component {
   }
 
   handleEditUser = (name, about) => {
-    api.updateUser(name, about).then((result) => {
-      this.handleUpdateUser(result);
+    api.updateUser(name, about, this.state.jwt).then((result) => {
+      console.log(result);
+      this.handleUpdateUser(result.data);
     })
   }
   handleEditAvatar = (url) => {
-    api.updateAvatar(url).then((res) => {
-      this.handleUpdateUser(res);
+    api.updateAvatar(url, this.state.jwt).then((res) => {
+      this.handleUpdateUser(res.data);
     })
 
   }
@@ -92,9 +119,11 @@ class App extends React.Component {
   checkToken = (token) => {
     auth.getCurrentUser(token)
       .then((res) => {
-        if (res.ok) {
+        if (res.data) {
+          console.log("res ok")
           this.handleLogin(true);
-          this.handleUpdateUser(res.data)
+          this.handleUpdateUser(res.data);
+          this.setState({ jwt: token });
         }
         console.log(res);
       })
@@ -105,27 +134,17 @@ class App extends React.Component {
 
   handleSignout = () => {
     localStorage.removeItem("jwt");
+
+    this.setState({
+      currentUser: {},
+      userEmail: null,
+      jwt: "" 
+    });
     this.handleLogin(false);
+
+
   }
 
-  handleSignIn = (userEmail, userPassword) => {
-    auth.signIn(userEmail, userPassword)
-      .then((res) => {
-        console.log(res);
-        if (res.token) {
-          localStorage.setItem("jwt", res.token);
-          this.handleLogin(true);
-          auth.getCurrentUser(res.token)
-            .then((res) => {
-              this.handleUpdateUser(res.data)
-            })
-          return res;
-        }
-        return res.json;
-      }).catch((err) => {
-        console.log(err);
-      });
-  }
 
   handleRegister = (userEmail, userPassword) => {
     auth.signUp(userEmail, userPassword)
@@ -152,48 +171,60 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-  const token = localStorage.getItem('jwt');
+    const token = localStorage.getItem('jwt');
+
     if (token) {
+
       this.checkToken(token);
+      //now for generating cards
+      console.log('now for cards');
+      api.getInitialCards(token)
+        .then(res => {
 
+          this.setState({ cards: res.data });;
 
+        })
     }
-    //now for generating cards
-    api.getInitialCards()
-      .then(res => {
-        let initialCards = [];
-        res.forEach((card) => {
-          initialCards.push(card);
-        });
-        this.setState({ cards: initialCards });
-      })
 
   }
 
   handleCardLike = (card) => {
-    const isLiked = card.likes.some(i => i._id === this.state.currentUser._id);
-    api.likeButton(card, isLiked).then((res) => {
-      const newCards = this.state.cards.map((card) =>
-        res._id === card._id ? res : card);
-      this.setState({ cards: newCards });
-    })
+    console.log(card.likes)
+    const isLiked = card.likes.some(i => i === this.state.currentUser._id);
+
+    console.log(card);
+    console.log(isLiked);
+    api.likeButton(card._id, isLiked, this.state.jwt)
+      .then((res) => {
+        console.log(res.data._id);
+
+        const newCards = this.state.cards.map((each) => (each._id === card._id) ? res.data : each);
+
+
+        this.setState({ cards: newCards });
+
+      })
   }
+
 
   handleDeleteCard = (card) => {
     //Delete button should not be there if this is not true, but...anyway checking if card is owned by current user
-    const cardOwner = card.owner._id === this.state.currentUser._id;
+    const cardOwner = card.owner === this.state.currentUser._id;
 
     if (cardOwner) {
-      api.deleteCard(card._id).then(() => {
+      api.deleteCard(card._id, this.state.jwt).then(() => {
         const newCards = this.state.cards.filter(c => c._id !== card._id);
         this.setState({ cards: newCards });
-      })
+      }).catch((err) => {
+        console.log(err)
+      });
     }
   }
 
   handleAddPlaceSubmit = (name, link) => {
-    api.addCard(name, link).then((res) => {
-      this.setState({ cards: [...this.state.cards, res] });
+    api.addCard(name, link, this.state.jwt).then((res) => {
+      console.log(res);
+      this.setState({ cards: [...this.state.cards, res.data] });
     })
   }
 
@@ -226,7 +257,7 @@ class App extends React.Component {
           <AddPlacePopup isAddPopOpen={this.state.isAddPopOpen} closeAllPopups={this.closeAllPopups} onAddPlace={this.handleAddPlaceSubmit} />
           <ImagePopup card={this.state.selectedCard} onClose={this.closeAllPopups}>
           </ImagePopup>
-          <InfoToolTip isOpen={this.state.isInfoToolTipOpen} success={"true"} onClose={this.closeAllPopups} />
+          <InfoToolTip isOpen={this.state.isInfoToolTipOpen} success={this.state.isLoggedIn} onClose={this.closeAllPopups} />
         </CurrentUserContext.Provider>
       </div>
     );

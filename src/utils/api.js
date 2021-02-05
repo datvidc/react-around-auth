@@ -1,8 +1,8 @@
 class Api {
-  constructor(url, options) {
+  constructor(url,) {
     this._startUrl = url;
-    this._header = options;
-    this._headerinfo = options.headers;
+
+
   }
 
   getUser() {
@@ -10,11 +10,15 @@ class Api {
     return this._makeRequests(userUrl);
   }
 
-  updateUser(name, about) {
-    const updateMe = this._startUrl.concat("/group-1/users/me");
+  updateUser(name, about, token) {
+    console.log("called it");
+    const updateMe = this._startUrl.concat("/users/me");
     return fetch(updateMe, {
       method: "PATCH",
-      headers: this._headerinfo,
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${token}`
+      },
       body: JSON.stringify({
         name: name,
         about: about
@@ -29,11 +33,14 @@ class Api {
       })
   }
 
-  updateAvatar(link) {
-    const newPic = this._startUrl.concat("/group-1/users/me/avatar");
+  updateAvatar(link, token) {
+    const newPic = this._startUrl.concat("/users/me/avatar");
     return fetch(newPic, {
       method: "PATCH",
-      headers: this._headerinfo,
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${token}`
+      },
       body: JSON.stringify({
         avatar: link
       })
@@ -60,12 +67,15 @@ class Api {
       })
   }
 
-  deleteCard(cardID) {
-    const killUrl = this._startUrl.concat("/group-1/cards/" + cardID);
-
+  deleteCard(cardID, token) {
+    const killUrl = this._startUrl.concat("/cards/" + cardID);
+    console.log(cardID);
     return fetch(killUrl, {
       method: "DELETE",
-      headers: this._headerinfo,
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${token}`
+      },
     })
       .then(res => {
         if (res.ok) {
@@ -79,11 +89,14 @@ class Api {
     /* api.deleteCard("5f1203c38b2c57001f1475ca"); */
   }
 
-  addCard(name, link) {
-    const addUrl = this._startUrl.concat("/group-1/cards");
+  addCard(name, link, token) {
+    const addUrl = this._startUrl.concat("/cards");
     return fetch(addUrl, {
       method: "POST",
-      headers: this._headerinfo,
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${token}`
+      },
       body: JSON.stringify({
         name: name,
         link: link
@@ -106,12 +119,15 @@ class Api {
     }); */
   }
 
-  likeButton(card, isLiked) {
+  likeButton(card, isLiked, token) {
     if (!isLiked) {
-      const likeUrl = this._startUrl.concat("/group-1/cards/likes/" + card._id);
-      return fetch(likeUrl, {
+      console.log(card);
+      return fetch(`https://register.nomoreparties.co/cards/${card}/likes`, {
         method: "PUT",
-        headers: this._headerinfo
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`
+        },
       })
         .then(res => {
           if (res.ok) {
@@ -122,10 +138,13 @@ class Api {
 
         })
     } else {
-      const disLikeUrl = this._startUrl.concat("/group-1/cards/likes/" + card._id);
-      return fetch(disLikeUrl, {
+      console.log(card);
+      return fetch(`https://register.nomoreparties.co/cards/${card}/likes`, {
         method: "DELETE",
-        headers: this._headerinfo
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`
+        },
       })
         .then(res => {
           if (res.ok) {
@@ -135,14 +154,19 @@ class Api {
         }).catch(res => {
           console.log(res);
         })
+
+
     }
   }
 
-  likeCard(cardID) {
-    const likeUrl = this._startUrl.concat("/group-1/cards/likes/" + cardID);
+  likeCard(cardID, token) {
+    const likeUrl = this._startUrl.concat("/cards/likes/" + cardID);
     fetch(likeUrl, {
       method: "PUT",
-      headers: this._headerinfo
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${token}`
+      }
     })
       .then(res => {
         if (res.ok) { }
@@ -153,11 +177,14 @@ class Api {
     //call it like> api.likeCard(cardID);
   }
 
-  disLike(cardID) {
-    const disLikeUrl = this._startUrl.concat("/group-1/cards/likes/" + cardID);
+  disLike(cardID, token) {
+    const disLikeUrl = this._startUrl.concat("/cards/likes/" + cardID);
     fetch(disLikeUrl, {
       method: "DELETE",
-      headers: this._headerinfo
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${token}`
+      },
     })
       .then(res => {
         if (res.ok) {
@@ -172,8 +199,14 @@ class Api {
 
 
 
-  getInitialCards() {
-    return fetch("https://around.nomoreparties.co/v1/group-1/cards", this._header)
+  getInitialCards(token) {
+    return fetch("https://register.nomoreparties.co/cards", {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    })
       .then(res => {
         if (res.ok) {
           return res.json();
@@ -187,11 +220,6 @@ class Api {
 }
 
 
-const api = new Api('https://register.nomoreparties.co', {
-  headers: {
-    authorization: "3aa990c2-b590-4bfb-9403-af52e9b89792",
-    "Content-Type": "application/json"
-  }
-});
+const api = new Api('https://register.nomoreparties.co');
 
 export default api;
