@@ -150,11 +150,15 @@ class App extends React.Component {
     auth.signUp(userEmail, userPassword)
       .then((res) => {
         console.log(res);
+        if (res.data) {
         this.handleEmailUpdate(res.data.email);
         this.handleSignIn(userEmail, userPassword);
         return res.json;
+        this.handleInfoToolTip(true);
+        }
       }).catch((err) => {
         console.log(err);
+        this.handleInfoToolTip(true);
       });
 
   }
