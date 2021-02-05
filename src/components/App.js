@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Link, Redirect, useHistory, withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
@@ -153,8 +153,9 @@ class App extends React.Component {
         if (res.data) {
         this.handleEmailUpdate(res.data.email);
         this.handleSignIn(userEmail, userPassword);
-        return res.json;
+        
         this.handleInfoToolTip(true);
+        return res.json;
         }
       }).catch((err) => {
         console.log(err);
