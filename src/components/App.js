@@ -51,7 +51,6 @@ class App extends React.Component {
             .then((res) => {
               this.handleUpdateUser(res.data)
               this.handleInfoToolTip(true);
-              this.componentDidMount();
             })
           return res;
         }
