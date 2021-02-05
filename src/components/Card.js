@@ -20,7 +20,7 @@ function Card(props) {
 
 return(
 
-    <li key={props.index} className="elements__element">
+    <li className="elements__element">
      { isOwn ? <button id="elements__trash " className="elements__trash" onClick={handleDelete} /> : ""} 
       <img className="elements__image" onClick={handleClick} src={props.card.link} alt={props.card.name} />
       <div className="elements__photo-bottom ">
