@@ -48,6 +48,7 @@ function Login(props) {
                         onChange={handleEmailChange}
                         className={'login__input'}
                         placeholder={'Email'}
+                        value={emailVal}
                         pattern="(?!(^[.-].*|[^@]*[.-]@|.*\.{2,}.*)|^.{254}.)([a-zA-Z0-9!#$%&'*+\/=?^_`{|}~.-]+@)(?!-.*|.*-\.)([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,15}"
                     />
                 </label>
@@ -56,7 +57,7 @@ function Login(props) {
                         onChange={handlePasswordChange}
                         className="login__input"
                         placeholder={"Password"}
-
+                        value={passwordVal}
                         type="password" />
                 </label>
                 <button onClick={handleLoginBtnClick} type="submit" className="login__save"> Login </button>
