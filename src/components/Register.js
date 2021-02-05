@@ -29,11 +29,12 @@ function Register(props) {
                         type="email"
                         className="login__input"
                         placeholder={'Email'}
+                        value={email}
                         pattern="(?!(^[.-].*|[^@]*[.-]@|.*\.{2,}.*)|^.{254}.)([a-zA-Z0-9!#$%&'*+\/=?^_`{|}~.-]+@)(?!-.*|.*-\.)([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,15}"
                     />
                 </label>
                 <label>
-                    <input type="password" onChange={handlePassChange} className="login__input" placeholder={"Password"} />
+                    <input type="password" value={pass} onChange={handlePassChange} className="login__input" placeholder={"Password"} />
                 </label>
                 <button type="submit" onClick={handleSignin} className="login__save"> Sign up </button>
                 <Link to="/signin" className="login__prompt">Already a member? Log in here!</Link>
