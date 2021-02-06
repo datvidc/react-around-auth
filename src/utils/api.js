@@ -64,6 +64,8 @@ class Api {
         } else {
           return Promise.reject(`ERROR: ${res.status}`);
         }
+      }).catch(res => {
+        console.log(res);
       })
   }
 
@@ -173,6 +175,8 @@ class Api {
       }).catch(res => {
         console.log(res);
 
+      }).catch(res => {
+        console.log(res);
       })
     //call it like> api.likeCard(cardID);
   }
@@ -213,6 +217,8 @@ class Api {
         } else {
           return Promise.reject(`Error: ${res.status}`);
         }
+      }).catch(res => {
+        console.log(res);
       })
 
 
