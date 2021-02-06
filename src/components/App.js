@@ -236,7 +236,7 @@ class App extends React.Component {
   handleAddPlaceSubmit = (name, link) => {
     api.addCard(name, link, this.state.jwt).then((res) => {
       console.log(res);
-      this.setState({ cards: [...this.state.cards, res.data] });
+      this.setState({ cards: [res.data, ...this.state.cards] });
     }).catch(res => {
       console.log(res);
     })
