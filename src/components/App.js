@@ -106,11 +106,15 @@ class App extends React.Component {
     api.updateUser(name, about, this.state.jwt).then((result) => {
       console.log(result);
       this.handleUpdateUser(result.data);
+    }).catch(res => {
+      console.log(res);
     })
   }
   handleEditAvatar = (url) => {
     api.updateAvatar(url, this.state.jwt).then((res) => {
       this.handleUpdateUser(res.data);
+    }).catch(res => {
+      console.log(res);
     })
 
   }
@@ -187,6 +191,8 @@ class App extends React.Component {
 
           this.setState({ cards: res.data });;
 
+        }).catch(res => {
+          console.log(res);
         })
     }
 
@@ -207,6 +213,8 @@ class App extends React.Component {
 
         this.setState({ cards: newCards });
 
+      }).catch(res => {
+        console.log(res);
       })
   }
 
@@ -229,6 +237,8 @@ class App extends React.Component {
     api.addCard(name, link, this.state.jwt).then((res) => {
       console.log(res);
       this.setState({ cards: [...this.state.cards, res.data] });
+    }).catch(res => {
+      console.log(res);
     })
   }
 
